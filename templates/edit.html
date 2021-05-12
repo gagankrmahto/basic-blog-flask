@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+ <form method="post" action="/update/{{ post._id }}">
+ {{ form.csrf_token }}
+ <div class="container my-3">
+ <div class="input-group">
+  <span class="input-group-text my-1">Enter Post Title</span>
+  <input type="text" aria-label="Post Name" name="title" class="form-control" value='{{ post.title }}'>
+</div>
+<div class="input-group">
+  <span class="input-group-text my-1">Enter Tags: Use commans to separate multiple tags </span>
+  <input type="text" aria-label="Taga" name="tags" class="form-control" value="{{ post.tags|join(',') }}">
+</div>
+    {{ form.body() }}
+    <center>
+    <button type="submit" class="btn btn-dark btn-lg my-2 align-middle">Update Post</button>
+</center>
+</form>
+</div>
+ {{ ckeditor.load() }}
+ {{ ckeditor.config(name='body') }}
+
+
+{% endblock body %}

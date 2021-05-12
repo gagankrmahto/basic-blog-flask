@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container py-3 my-5 px-50 bg-light">
+    <h1 class="text-center">{{ post.title }}</h1>
+
+    <p class="bg-light">{% autoescape false %}
+        <div class="container-md">
+
+            {{ post.content}}
+        </div>
+    {% endautoescape%}
+    </p>
+</div>
+{% endblock body %}

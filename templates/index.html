@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block body %}
+<main role="main">
+
+    <section class="jumbotron text-center py-5 px-10">
+        <div class="container">
+            <h1 class="jumbotron-heading">My Simple Blog</h1>
+            <p class="lead text-muted">The best way to learn is to create something. This blog app has been made on
+                flask using and leverage the power of MongoDB</p>
+            <p>
+                <a href="/create" class="btn btn-primary my-2">Create A Post</a>
+            </p>
+        </div>
+    </section>
+    <div class="container">
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for post in posts %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://source.unsplash.com/1600x900/?{{ post.tags|join(',') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post['title'] }} </h5>
+                        <p class="card-text">{% autoescape false %} {{ post['content']|safe|striptags|truncate(75) }} {%
+                            endautoescape %}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+
+                                <a href="/view/{{post._id}}"><button type="button"
+                                        class="btn btn-sm btn-outline-secondary">View</button></a>
+                                <a href="/edit/{{post._id}}"><button type="button"
+                                        class="btn btn-sm btn-outline-secondary">Edit</button></a>
+                                <a href="/delete/{{post._id}}"><button type="button"
+                                        class="btn btn-sm btn-outline-secondary">Delete</button></a>
+
+                            </div>
+
+                            <small class="text-muted">0 mins</small>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        
+                            {% for item in post['tags'] %}
+                            <a href="/"><button type="button" class="btn btn-sm btn-info">{{ item }}
+                        </button></a>
+                                    {% endfor %}
+
+                        
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+    </div>
+    </div>
+
+
+    </div>
+    </div>
+    </div>
+</main>
+{% endblock body %}
